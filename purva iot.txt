@@ -1,0 +1,58 @@
+from flask import Flask, jsonify, request, render_template
+import sqlite3
+
+app = Flask(__name__)
+
+# Function to get blood availability
+def get_blood_availability():
+    conn = sqlite3.connect('blood_bank.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT blood_group, quantity FROM BloodInventory")
+    data = cursor.fetchall()
+    conn.close()
+    return data
+
+# Home page
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+# Route to add new blood group entry
+@app.route('/add_blood', methods=['POST'])
+def add_blood():
+    blood_group = request.form['blood_group']
+    quantity = request.form['quantity']
+
+    # Insert data into the database
+    conn = sqlite3.connect('blood_bank.db')
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO BloodInventory (blood_group, quantity) VALUES (?, ?)", (bloo>
+    conn.commit()
+    conn.close()
+
+    return render_template('result.html', message=f"Added {blood_group} with quantity {quant>
+
+# Route to update existing blood group quantity
+@app.route('/update_blood', methods=['POST'])
+def update_blood():
+    blood_group = request.form['blood_group']
+    quantity = request.form['quantity']
+
+    # Update the quantity in the database
+    conn = sqlite3.connect('blood_bank.db')
+    cursor = conn.cursor()
+    cursor.execute("UPDATE BloodInventory SET quantity = ? WHERE blood_group = ?", (quantity>
+    conn.commit()
+    conn.close()
+
+    return render_template('result.html', message=f"Updated {blood_group} to quantity {quant>
+
+# Route to check blood availability
+@app.route('/check_availability', methods=['GET'])
+def check_availability():
+    blood_data = get_blood_availability()
+    return render_template('result.html', message=blood_data)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=80)
+

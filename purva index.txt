@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Bank Management System</title>
+    <style>
+        body {
+            background-image: url('https://www.sriramakrishnahospital.com/wp-content/uploads/2021/06/Blood>
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+        }
+
+        form {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        input[type="text"], input[type="number"] {
+            margin: 10px 0;
+            padding: 5px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #ff3333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #cc0000;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #ff3333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Blood Bank Management System</h1>
+
+    <!-- Form to Add Blood Group -->
+    <h2>Add Blood Group</h2>
+    <form action="/add_blood" method="POST">
+        <label for="blood_group">Blood Group:</label>
+        <input type="text" id="blood_group" name="blood_group" required><br>
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" required><br><br>
+        <input type="submit" value="Add Blood Group">
+    </form>
+
+    <!-- Form to Update Blood Group -->
+    <h2>Update Blood Group Quantity</h2>
+    <form action="/update_blood" method="POST">
+        <label for="blood_group">Blood Group:</label>
+        <input type="text" id="blood_group" name="blood_group" required><br>
+        <label for="quantity">New Quantity:</label>
+        <input type="number" id="quantity" name="quantity" required><br><br>
+        <input type="submit" value="Update Blood Group">
+    </form>
+
+    <!-- Link to Check Blood Availability -->
+    <h2>Check Blood Availability</h2>
+    <a href="/check_availability">Check Availability</a>
+</body>
+</html>
